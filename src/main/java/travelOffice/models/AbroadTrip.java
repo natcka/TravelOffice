@@ -1,7 +1,6 @@
 package travelOffice.models;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AbroadTrip extends Trip {
 

@@ -1,4 +1,10 @@
-mar 21, 2019 2:52:39 PM travelOffice.Main main
-INFO: Uruchamiam aplikację
-mar 21, 2019 2:52:51 PM travelOffice.MainHandler addCustomer
-INFO: adding new customer [tu_nazwa_usera]
+mar 21, 2019 3:23:34 PM travelOffice.Main main
+INFO: Running application [tu_user_login]
+mar 21, 2019 3:23:37 PM travelOffice.MainHandler showTrips
+INFO: showing all trips [tu_nazwa_usera]
+mar 21, 2019 3:23:40 PM travelOffice.MainHandler removeTrip
+INFO: removing trip [tu_nazwa_usera]
+mar 21, 2019 3:23:41 PM travelOffice.MainHandler removeTrip
+WARNING: checked exception
+mar 21, 2019 3:23:45 PM travelOffice.Main userMenu
+INFO: Shutting down the app
