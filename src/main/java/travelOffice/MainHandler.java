@@ -16,7 +16,7 @@ public class MainHandler implements UserInterface {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public static Logger logger = Logger.getLogger("com.company.TravelOffice");
+    private static Logger logger = Logger.getLogger("com.company.TravelOffice");
 
     public MainHandler(TravelOffice travelOffice) {
         this.travelOffice = travelOffice;
@@ -48,6 +48,7 @@ public class MainHandler implements UserInterface {
         } catch (ValidationException ex) {
             System.out.println(ex.getMessage());
         }
+
         return null;
     }
 
@@ -106,8 +107,8 @@ public class MainHandler implements UserInterface {
 
         String name = null;
         String destination = null;
-        Customer customer = null;
-        Trip trip = null;
+        Customer customer ;
+        Trip trip;
 
         try {
             System.out.println("Podaj nazwisko klienta: ");
