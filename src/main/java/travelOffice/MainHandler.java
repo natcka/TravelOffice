@@ -6,6 +6,7 @@ import travelOffice.models.*;
 
 import javax.xml.bind.ValidationException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -174,8 +175,10 @@ public class MainHandler implements UserInterface {
     private void validateZipCode(String zip) throws ValidationException {
         char[] chars = zip.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if (i == 2 && chars[i] != '-') {
-                throw new ValidationException("Błędny kod pocztowy");
+            if (i == 2) {
+                if (chars[i] != '-') {
+                    throw new ValidationException("Błędny kod pocztowy");
+                }
             } else if (!Character.isDigit(chars[i])) {
                 throw new ValidationException("Błędny kod pocztowy");
             }
@@ -189,8 +192,8 @@ public class MainHandler implements UserInterface {
             throw new ValidationException("Błedny format daty");
         }
 
-//        LocalDate now = LocalDate.now();
-//        LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        LocalDate now = LocalDate.now();
+        LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 //        if (parseDate.getYear() < now.getYear() || parseDate.getMonthValue() < now.getMonthValue() || parseDate.getDayOfMonth() < now.getDayOfMonth()) {
 //            throw new ValidationException("Błędna data - data nie może być wcześniejsza niż aktualna");
 //        }

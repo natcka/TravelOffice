@@ -24,7 +24,7 @@ public class Main {
 
     private static UserInterface ui = new MainHandler(travelOffice);
 
-    public static Logger logger = Logger.getLogger("com.company.TravelOffice");
+    private static Logger logger = Logger.getLogger("com.company.TravelOffice");
 
     private static final String menu = "\nMENU: \n" +
             "\t1. Dodaj klienta\n" +
@@ -42,7 +42,7 @@ public class Main {
         fileHandler.setFormatter(new SimpleFormatter());
         logger.addHandler(fileHandler);
 
-        logger.info("Uruchamiam aplikację");
+        logger.info("Running application [tu_user_login]");
         userMenu();
     }
 
@@ -70,7 +70,7 @@ public class Main {
                     break;
 
                 case 2:
-                    Trip trip = null;
+                    Trip trip;
                     try {
                         trip = ui.addTrip();
                     } catch (IllegalArgumentException ex) {
@@ -106,6 +106,7 @@ public class Main {
                     break;
 
                 case 8:
+                    logger.info("Shutting down the app");
                     System.exit(0);
                     break;
 
