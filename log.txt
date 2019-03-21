@@ -1,0 +1,4 @@
+mar 21, 2019 2:24:25 PM travelOffice.Main main
+INFO: Uruchamiam aplikację
+mar 21, 2019 2:24:27 PM travelOffice.MainHandler addCustomer
+INFO: adding new customer [tu_nazwa_usera]
