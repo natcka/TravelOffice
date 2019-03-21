@@ -39,16 +39,16 @@ public class MainHandler implements UserInterface {
         String zip = scanner.nextLine();
         try {
             validateZipCode(zip);
+            System.out.println("Podaj miasto: ");
+            String city = scanner.nextLine();
+            Address address = new Address(street, zip, city);
+            Customer newCustomer = new Customer(name, surname);
+            newCustomer.setAddress(address);
+            return newCustomer;
         } catch (ValidationException ex) {
             System.out.println(ex.getMessage());
         }
-
-        System.out.println("Podaj miasto: ");
-        String city = scanner.nextLine();
-        Address address = new Address(street, zip, city);
-        Customer newCustomer = new Customer(name, surname);
-        newCustomer.setAddress(address);
-        return newCustomer;
+        return null;
     }
 
     @Override

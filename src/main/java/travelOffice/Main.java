@@ -61,8 +61,12 @@ public class Main {
                 case 1:
                     Customer customer = ui.addCustomer();
                     HashSet<Customer> setOfCustomers = travelOffice.getSetOfCustomers();
-                    setOfCustomers.add(customer);
-                    System.out.println("Dodano klienta [nazwisko= " + customer.getSurname() + ", imię= " + customer.getName() + "]");
+                    if (customer != null) {
+                        setOfCustomers.add(customer);
+                        System.out.println("Dodano klienta [nazwisko= " + customer.getSurname() + ", imię= " + customer.getName() + "]");
+                    } else {
+                        System.out.println("Nie udało się dodać klienta - sprawdź logi");
+                    }
                     break;
 
                 case 2:
