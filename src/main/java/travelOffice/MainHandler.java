@@ -107,17 +107,15 @@ public class MainHandler implements UserInterface {
 
         String name = null;
         String destination = null;
-        Customer customer ;
-        Trip trip;
 
         try {
             System.out.println("Podaj nazwisko klienta: ");
             name = scanner.nextLine();
-            customer = travelOffice.findCustomerByName(name);
+            Customer customer = travelOffice.findCustomerByName(name);
 
             System.out.println("Podaj destynację: ");
             destination = scanner.nextLine();
-            trip = travelOffice.findTripByDestination(destination);
+            Trip trip = travelOffice.findTripByDestination(destination);
 
             customer.assignTrip(trip);
         } catch (NoSuchCustomerException ex) {
