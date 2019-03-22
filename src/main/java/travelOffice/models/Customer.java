@@ -44,19 +44,19 @@ public class Customer {
         this.trip = trip;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) {
-            sb.append("\nKlient: " + name + " " + surname);
-        }
-        if (address != null) {
-            sb.append(",\n" + address.toString());
-        }
-        if (trip != null) {
-            sb.append(",\n" + trip.toString());
-            sb.append("\nFinal price: " + trip.getPrice().toString() + "*\n*all extra costs and discounts included");
-        }
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        if (name != null) {
+//            sb.append("\nKlient: " + name + " " + surname);
+//        }
+//        if (address != null) {
+//            sb.append(",\n" + address.toString());
+//        }
+//        if (trip != null) {
+//            sb.append(",\n" + trip.toString());
+//            sb.append("\nFinal price: " + trip.getPrice().toString() + "*\n*all extra costs and discounts included");
+//        }
+//        return sb.toString();
+//    }
 }

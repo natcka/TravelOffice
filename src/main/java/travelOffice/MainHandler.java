@@ -1,26 +1,26 @@
 package travelOffice;
 
 import travelOffice.exceptions.NoSuchCustomerException;
-import travelOffice.exceptions.NoSuchTripExcepton;
+import travelOffice.exceptions.NoSuchTripException;
 import travelOffice.models.*;
+import travelOffice.services.TravelOfficeService;
 
 import javax.xml.bind.ValidationException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class MainHandler implements UserInterface {
 
-    private TravelOffice travelOffice;
+    private TravelOfficeService travelOfficeService;
 
     private Scanner scanner = new Scanner(System.in);
 
     private static Logger logger = Logger.getLogger("com.company.TravelOffice");
 
-    public MainHandler(TravelOffice travelOffice) {
-        this.travelOffice = travelOffice;
+    public MainHandler(TravelOfficeService travelOfficeService) {
+        this.travelOfficeService = travelOfficeService;
     }
 
     @Override
@@ -45,6 +45,7 @@ public class MainHandler implements UserInterface {
             Address address = new Address(street, zip, city);
             Customer newCustomer = new Customer(name, surname);
             newCustomer.setAddress(address);
+            travelOfficeService.addCustomer(newCustomer);
             return newCustomer;
         } catch (ValidationException ex) {
             System.out.println(ex.getMessage());
@@ -112,17 +113,15 @@ public class MainHandler implements UserInterface {
         try {
             System.out.println("Podaj nazwisko klienta: ");
             name = scanner.nextLine();
-            Customer customer = travelOffice.findCustomerByName(name);
 
             System.out.println("Podaj destynację: ");
             destination = scanner.nextLine();
-            Trip trip = travelOffice.findTripByDestination(destination);
 
-            customer.assignTrip(trip);
+            travelOfficeService.assign(name, destination);
         } catch (NoSuchCustomerException ex) {
             logger.warning("checked exception");
             System.out.println(ex.getMessage() + name);
-        } catch (NoSuchTripExcepton ex) {
+        } catch (NoSuchTripException ex) {
             logger.warning("checked exception");
             System.out.println(ex.getMessage() + destination);
         }
@@ -137,7 +136,7 @@ public class MainHandler implements UserInterface {
         System.out.println("Podaj imię: ");
         String name = scanner.nextLine();
         try {
-            travelOffice.removeCustomer(surname, name);
+            travelOfficeService.removeCustomer(surname, name);
         } catch (NoSuchCustomerException ex) {
             logger.warning("checked exception");
             System.out.println(ex.getMessage() + surname + " " + name);
@@ -151,8 +150,8 @@ public class MainHandler implements UserInterface {
         System.out.println("Podaj destynację: ");
         String destination = scanner.nextLine();
         try {
-            travelOffice.removeTrip(destination);
-        } catch (NoSuchTripExcepton ex) {
+            travelOfficeService.removeTrip(destination);
+        } catch (NoSuchTripException ex) {
             logger.warning("checked exception");
             System.out.println(ex.getMessage() + destination);
         }
@@ -162,14 +161,14 @@ public class MainHandler implements UserInterface {
     public void showCustomers() {
         logger.info("showing all customers [tu_nazwa_usera]");
 
-        travelOffice.getAllCustomers();
+        travelOfficeService.getAllCustomers();
     }
 
     @Override
     public void showTrips() {
         logger.info("showing all trips [tu_nazwa_usera]");
 
-        travelOffice.getAllTrips();
+        travelOfficeService.getAllTrips();
     }
 
     private void validateZipCode(String zip) throws ValidationException {

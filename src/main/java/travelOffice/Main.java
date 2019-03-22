@@ -4,6 +4,7 @@ import travelOffice.models.AbroadTrip;
 import travelOffice.models.Customer;
 import travelOffice.models.TravelOffice;
 import travelOffice.models.Trip;
+import travelOffice.services.TravelOfficeService;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +21,9 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    private static TravelOffice travelOffice = new TravelOffice();
+    private static TravelOfficeService travelOfficeService = new TravelOfficeService(new TravelOffice());
 
-    private static UserInterface ui = new MainHandler(travelOffice);
+    private static UserInterface ui = new MainHandler(travelOfficeService);
 
     private static Logger logger = Logger.getLogger("com.company.TravelOffice");
 
@@ -51,16 +52,12 @@ public class Main {
 
         do {
             System.out.println(menu);
-            try {
-                i = scanner.nextInt();
-            } catch (InputMismatchException ex) {
-                logger.severe(ex.getLocalizedMessage());
-            }
+            i = scanner.nextInt();
 
             switch (i) {
                 case 1:
                     Customer customer = ui.addCustomer();
-                    HashSet<Customer> setOfCustomers = travelOffice.getSetOfCustomers();
+                    HashSet<Customer> setOfCustomers = travelOfficeService.getSetOfCustomers();
                     if (customer != null) {
                         setOfCustomers.add(customer);
                         System.out.println("Dodano klienta [nazwisko= " + customer.getSurname() + ", imię= " + customer.getName() + "]");
@@ -78,7 +75,7 @@ public class Main {
                         System.out.println(ex.getLocalizedMessage());
                         break;
                     }
-                    HashMap<String, Trip> mapOfTrips = travelOffice.getMapOfTrips();
+                    HashMap<String, Trip> mapOfTrips = travelOfficeService.getMapOfTrips();
                     mapOfTrips.put(trip.getDestination(), trip);
                     System.out.println("Dodano wycieczkę " + (trip instanceof AbroadTrip ? "zagraniczną " : "krajową ")
                             + "[destynacja= " + trip.getDestination() + "]");
