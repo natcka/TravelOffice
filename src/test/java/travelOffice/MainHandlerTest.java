@@ -15,10 +15,10 @@ import travelOffice.services.TravelOfficeService;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MainHandlerTest {
@@ -69,12 +69,12 @@ public class MainHandlerTest {
     @Test
     public void shouldReturnTripIfTripExists() throws NoSuchTripException {
         //given
-        Trip trip1 = new Trip(LocalDate.now(), LocalDate.now(), "Malibu", 1234L, false);
-        Trip trip2 = new Trip(LocalDate.now(), LocalDate.now(), "Pcim", 1234L, true);
-        HashMap<String, Trip> mapOfTrips = travelOffice.getMapOfTrips();
-        mapOfTrips.put(trip1.getDestination(), trip1);
-        mapOfTrips.put(trip2.getDestination(), trip2);
-        travelOffice.setMapOfTrips(mapOfTrips);
+//        Trip trip1 = new Trip(LocalDate.now(), LocalDate.now(), "Malibu", 1234L, false);
+//        Trip trip2 = new Trip(LocalDate.now(), LocalDate.now(), "Pcim", 1234L, true);
+//        HashMap<String, Trip> mapOfTrips = travelOffice.getMapOfTrips();
+//        mapOfTrips.put(trip1.getDestination(), trip1);
+//        mapOfTrips.put(trip2.getDestination(), trip2);
+//        travelOffice.setMapOfTrips(mapOfTrips);
 
         String destination = "Malibu";
 
@@ -86,11 +86,14 @@ public class MainHandlerTest {
 
     @Test
     public void shouldReturnTrueIfTripIsAssignToCustomer() throws NoSuchTripException, NoSuchCustomerException {
-      when(travelOffice.assign("Nowak", "Malibu")).thenReturn(true);
-      assertEquals(true, travelOfficeService.assign("Nowak", "Malibu"));
+        when(travelOffice.assign("Nowak", "Malibu")).thenReturn(true);
+        assertEquals(true, travelOfficeService.assign("Nowak", "Malibu"));
     }
-//
-//    @Test
-//    public void
+
+    @Test
+    public void shouldReturnTrueWhenCustomerHasBeenRemoved() throws NoSuchCustomerException {
+        when(travelOffice.removeCustomer("Nowak", "Adam")).thenReturn(true);
+        assertEquals(true, travelOfficeService.removeCustomer("Nowak", "Adam"));
+    }
 
 }

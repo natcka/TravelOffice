@@ -61,10 +61,11 @@ public class TravelOffice {
         }
     }
 
-    public void removeCustomer(String surname, String name) throws NoSuchCustomerException {
+    public boolean removeCustomer(String surname, String name) throws NoSuchCustomerException {
         if (!setOfCustomers.removeIf(c -> c.getName().equals(name) && c.getSurname().equals(surname))) {
             throw new NoSuchCustomerException();
         }
+        return true;
     }
 
     public void getAllCustomers() {

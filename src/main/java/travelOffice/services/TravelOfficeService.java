@@ -25,8 +25,8 @@ public class TravelOfficeService {
         return travelOffice.findCustomerByName(name);
     }
 
-    public void removeCustomer(String surname, String name) throws NoSuchCustomerException {
-        travelOffice.removeCustomer(surname, name);
+    public boolean removeCustomer(String surname, String name) throws NoSuchCustomerException {
+        return travelOffice.removeCustomer(surname, name);
     }
 
     public void getAllCustomers() {
