@@ -64,10 +64,11 @@ public class Main {
                     if (customer != null) {
                         setOfCustomers.add(customer);
                         System.out.println("Dodano klienta [nazwisko= " + customer.getSurname() + ", imię= " + customer.getName() + "]");
+                        break;
                     } else {
                         System.out.println("Nie udało się dodać klienta - sprawdź logi");
+                        break;
                     }
-                    break;
 
                 case 2:
                     Trip trip;
